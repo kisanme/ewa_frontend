@@ -9,9 +9,10 @@
     .controller('CurrentBillsCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal, User) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
+      console.log(User.getCurrentUser());
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
       $scope.noPicture = true;
