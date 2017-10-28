@@ -5,8 +5,8 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.profile')
-    .controller('ProfilePageCtrl', ProfilePageCtrl);
+  angular.module('BlurAdmin.pages.user.login')
+    .controller('LoginCtrl', ProfilePageCtrl);
 
   /** @ngInject */
   function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {

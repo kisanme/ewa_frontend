@@ -1,17 +1,18 @@
 /**
- * @author Nasik Shafeek
- * created on 26.10.2017
+ * @author v.lugovsky
+ * created on 16.12.2015
  */
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.profile')
-    .controller('ProfilePageCtrl', ProfilePageCtrl);
+  angular.module('BlurAdmin.pages.user.register')
+    .controller('RegisterCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal, User) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
+      console.log(User.getCurrentUser());
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
       $scope.noPicture = true;

@@ -1,6 +1,6 @@
 /**
- * @author v.lugovsky
- * created on 16.12.2015
+ * @author Nasik Shafeek
+ * created on 26.10.2017
  */
 (function () {
   'use strict';
@@ -17,6 +17,7 @@
     'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
     'BlurAdmin.pages.bills',
+    'BlurAdmin.pages.user',
   ])
       .config(routeConfig);
 
@@ -42,6 +43,9 @@
         title: '404 Page',
         fixedHref: '404.html',
         blank: true
+      }, {
+        title: 'Forgot Password',
+        fixedHref: 'forgot-password.html'
       }]
     });
     baSidebarServiceProvider.addStaticItem({
