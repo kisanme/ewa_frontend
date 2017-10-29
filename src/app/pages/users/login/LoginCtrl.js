@@ -9,8 +9,12 @@
     .controller('LoginCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, $rootScope, fileReader, $filter, $uibModal) {
     $scope.picture = $filter('profilePicture')('Nasta');
+    $rootScope.sidebar_hide = true;
+    $rootScope.header_hide = true;
+
+    console.log($rootScope);
 
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
@@ -83,7 +87,12 @@
           });
     };
 
-    $scope.switches = [true, true, false, true, true, false];
+    $scope.oswitches = [true, true, false, true, true, false];
+
+    $scope.$on('$stateChangeStart', function (event) {
+      $rootScope.header_hide = false;
+      $rootScope.sidebar_hide = false;
+    });
   }
 
 })();

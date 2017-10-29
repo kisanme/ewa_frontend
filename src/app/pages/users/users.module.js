@@ -16,8 +16,8 @@
     $stateProvider
         .state('user', {
             url: '/user',
-            // template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
-            // abstract: true,
+            template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
+            abstract: true,
             // title: 'User'
         });
   }
