@@ -11,6 +11,8 @@
   /** @ngInject */
   function ProfilePageCtrl($scope, $rootScope, fileReader, $filter, $uibModal) {
     $scope.picture = $filter('profilePicture')('Nasta');
+
+    // Hide sidebar and header when these pages are loaded
     $rootScope.sidebar_hide = true;
     $rootScope.header_hide = true;
 
@@ -89,6 +91,7 @@
 
     $scope.oswitches = [true, true, false, true, true, false];
 
+    // When the app navigates away from this controller, re-load the header and sidebar in
     $scope.$on('$stateChangeStart', function (event) {
       $rootScope.header_hide = false;
       $rootScope.sidebar_hide = false;

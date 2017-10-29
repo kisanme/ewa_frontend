@@ -9,10 +9,13 @@
     .controller('RegisterCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal, User) {
+  function ProfilePageCtrl($scope, $rootScope, fileReader, $filter, $uibModal, User) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
-      console.log(User.getCurrentUser());
+    // Hide sidebar and header when these pages are loaded
+    $rootScope.sidebar_hide = true;
+    $rootScope.header_hide = true;
+
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
       $scope.noPicture = true;
@@ -85,6 +88,12 @@
     };
 
     $scope.switches = [true, true, false, true, true, false];
+
+      // When the app navigates away from this controller, re-load the header and sidebar in
+    $scope.$on('$stateChangeStart', function (event) {
+      $rootScope.header_hide = false;
+      $rootScope.sidebar_hide = false;
+    });
   }
 
 })();
