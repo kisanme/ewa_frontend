@@ -18,6 +18,7 @@
     'BlurAdmin.pages.profile',
     'BlurAdmin.pages.bills',
     'BlurAdmin.pages.user',
+    'BlurAdmin.pages.vas',
   ])
       .config(routeConfig);
 

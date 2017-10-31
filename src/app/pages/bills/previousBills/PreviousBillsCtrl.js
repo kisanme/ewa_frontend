@@ -1,6 +1,6 @@
 /**
- * @author v.lugovsky
- * created on 16.12.2015
+ * @author Nasik Shafeek
+ * created on 26.10.2017
  */
 (function () {
   'use strict';
@@ -10,7 +10,8 @@
 
   /** @ngInject */
   function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
-    
+  
+    $scope.page_size = 15;
     $scope.previous_bills = [
       {
         id: 1,
