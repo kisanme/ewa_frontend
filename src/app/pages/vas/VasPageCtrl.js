@@ -15,6 +15,20 @@
     // TODO - Set into global configuration
     Restangular.setBaseUrl(BACKEND.baseResource);
 
+
+    function activateVas(vas_code) {
+      // activate using mobile number and vas code
+    }
+
+    function deactivateVas(vas_code) {
+      // de-activate using mobile number and vas code
+    }
+
+    function updateChoice(vas) {
+      // Modal for confirmation presumably
+      // trigger vas updates based on current choices
+    }
+
     // Get all the features
     Restangular.one('vas-module', 'api').getList('getAllFeatureList').then(function (vas) {
 
