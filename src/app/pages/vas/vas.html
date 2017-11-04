@@ -1,13 +1,6 @@
 <uib-accordion>
-  <uib-accordion-group ng-repeat="(service_name, services) in vas" heading="{{service_name.replace('_', ' ')}}" panel-class="bootstrap-panel accordion-panel panel-default">
-      <div ng-repeat="service in services">
-          <span class="col-md-8">{{ service.name }}</span>
-          <ba-switcher switcher-style="primary" switcher-value="service.status"></ba-switcher>
-          <hr>
-      </div>
+  <uib-accordion-group ng-if="vas.length > 0" ng-repeat="service in vas" heading="{{service.description}}" panel-class="bootstrap-panel accordion-panel panel-default">
+    <span class="col-md-8">{{service.description}} ({{ service.featureCode }})</span>
+    <ba-switcher switcher-style="primary" switcher-value="service.status"></ba-switcher>
   </uib-accordion-group>
-    <uib-accordion-group heading="Dynamic Body Content" panel-class="bootstrap-panel accordion-panel panel-default">
-      <p>The body of the uib-accordion group grows to fit the contents</p>
-      <button type="button" class="btn btn-primary btn-sm">Add Item</button>
-    </uib-accordion-group>
 </uib-accordion>

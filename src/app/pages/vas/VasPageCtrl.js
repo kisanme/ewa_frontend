@@ -9,61 +9,34 @@
     .controller('VasPageCtrl', VasPageCtrl);
 
   /** @ngInject */
-  function VasPageCtrl($scope, fileReader, $filter, $uibModal) {
-    $scope.vas = {
-      "messaging": [
-        {
-          "name": "Short Messaging Service",
-          "status": true
+  function VasPageCtrl($scope, fileReader, $filter, $uibModal, BACKEND, Restangular) {
+    var mobile_number = '0714244978';
+
+    // TODO - Set into global configuration
+    Restangular.setBaseUrl(BACKEND.baseResource);
+
+    // Get all the features
+    Restangular.one('vas-module', 'api').getList('getAllFeatureList').then(function (vas) {
+
+      // All features
+      var all_features = vas.plain();
+
+      // Get features for the current user's mobile number
+      Restangular.one('vas-module', 'api').one('getVasDetails').getList(mobile_number).then(function(vas_services) {
+        $scope.vas = vas_services.plain();
+
+        // Intercepting 2 seperate requests and adding descriptions into it
+        for (var i = $scope.vas.length - 1; i >= 0; i--) {
+          for (var k = all_features.length - 1; k >= 0; k--) {
+            if ($scope.vas[i].featureCode == all_features[k].vasCode) {
+              $scope.vas[i].description = all_features[k].description;
+            }
+          }
         }
-      ],
-      "information_services": [
-        {
-          "name": "Stock Alert News",
-          "status": false
-        },
-        {
-          "name": "Location Based Service",
-          "status": true
-        },
-        {
-          "name": "Cricket News Alert",
-          "status": false
-        },
-      ],
-      "call_management": [
-        {
-          "name": "Call Conferencing",
-          "status": true
-        }
-      ],
-      "mobile_entertainment": [
-        {
-          "name": "SriTel Mobile Music",
-          "status": false
-        },
-        {
-          "name": "MYTV",
-          "status": false
-        },
-      ],
-      "others": [
-        {
-          "name": "Live@8 English",
-          "status": true
-        },
-        {
-          "name": "Call Blocking",
-          "status": false
-        },
-        {
-          "name": "Bulk Free Minutes",
-          "status": false
-        },
-      ],
-    };
-  
-    console.log($scope.vas);
+      });
+    });
+    
+
   }
 
 })();
