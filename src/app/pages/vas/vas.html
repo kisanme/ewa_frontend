@@ -1,6 +1,6 @@
 <uib-accordion>
   <uib-accordion-group ng-if="vas.length > 0" ng-repeat="service in vas" heading="{{service.description}}" panel-class="bootstrap-panel accordion-panel panel-default">
     <span class="col-md-8">{{service.description}} ({{ service.featureCode }})</span>
-    <ba-switcher switcher-style="primary" switcher-value="service.status"></ba-switcher>
+    <ba-switcher switcher-style="primary" switcher-value="service.status" feature-code="service.featureCode"></ba-switcher>
   </uib-accordion-group>
 </uib-accordion>

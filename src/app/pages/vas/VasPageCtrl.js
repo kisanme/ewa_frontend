@@ -9,28 +9,84 @@
     .controller('VasPageCtrl', VasPageCtrl);
 
   /** @ngInject */
-  function VasPageCtrl($scope, fileReader, $filter, $uibModal, BACKEND, Restangular) {
+  function VasPageCtrl($scope, toastr, $filter, $uibModal, BACKEND, Restangular, baProgressModal) {
     var mobile_number = '0714244978';
+    var vas_api = 'vas-module/api';
 
     // TODO - Set into global configuration
     Restangular.setBaseUrl(BACKEND.baseResource);
 
+    function toastMessage(title, message, type) {
+      toastr.info(message, title, {
+        "autoDismiss": false,
+        "positionClass": "toast-top-right",
+        "type": type,
+        "timeOut": "5000",
+        "extendedTimeOut": "2000",
+        "allowHtml": false,
+        "closeButton": false,
+        "tapToDismiss": true,
+        "progressBar": false,
+        "newestOnTop": true,
+        "maxOpened": 0,
+        "preventDuplicates": false,
+        "preventOpenDuplicates": false
+      });
+    }
 
     function activateVas(vas_code) {
       // activate using mobile number and vas code
+      if (vas_code) {
+        Restangular
+          .one(vas_api)
+          .one('activateVasService', mobile_number)
+          .one(vas_code)
+          .get()
+          .then(function (response) {
+            if (response.status == "Successfully Activated") {
+              toastMessage(vas_code+' activated successfully!', 'VAS Activation', "info");
+            } else {
+              toastMessage('Error in activating!', 'VAS Activation', "error");
+            }
+        });
+      }
     }
 
     function deactivateVas(vas_code) {
       // de-activate using mobile number and vas code
+      if (vas_code) {
+        Restangular
+          .one(vas_api)
+          .one('deactivateVasService', mobile_number)
+          .one(vas_code)
+          .get()
+          .then(function (response) {
+            if (response.status == "Successfully Deactivated") {
+            toastMessage(vas_code+' de-activated successfully!', 'VAS Deactivation', "info");
+            } else {
+              toastMessage('Error in de-activating!', 'VAS Deactivation', "error");
+            }
+        });
+      }
     }
 
     function updateChoice(vas) {
       // Modal for confirmation presumably
       // trigger vas updates based on current choices
+      if (vas.service && vas.new_value == true) {
+        // Activation
+        activateVas(vas.service);
+      } else if (vas.service && vas.new_value == false) {
+        deactivateVas(vas.service);
+      }
     }
 
+    $scope.$on('feature-code-changed', function (event, changed_data) {
+      updateChoice(changed_data);
+    });
+
     // Get all the features
-    Restangular.one('vas-module', 'api').getList('getAllFeatureList').then(function (vas) {
+    Restangular.one(vas_api).getList('getAllFeatureList').then(function (vas) {
 
       // All features
       var all_features = vas.plain();
@@ -50,6 +106,19 @@
       });
     });
     
+    $scope.open = function (page, size) {
+      $uibModal.open({
+        animation: true,
+        templateUrl: page,
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+    };
+    $scope.openProgressDialog = baProgressModal.open;
 
   }
 
