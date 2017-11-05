@@ -9,8 +9,8 @@
         <thead>
         <tr class="sortable ">
             <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-            <th st-sort="firstName">Invoice ID</th>
             <th st-sort="lastName">Billed Month</th>
+            <th st-sort="firstName">Brought Forward Balance</th>
             <th st-sort="username">Billed Amount</th>
             <th st-sort="email">Billed Date</th>
             <th st-sort="age">Bill Due</th>
@@ -30,13 +30,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in previous_bills">
+        <tr ng-repeat="item in bills">
             <td class="table-id">{{item.id}}</td>
-            <td>{{item.firstName}}</td>
-            <td>{{item.lastName}}</td>
-            <td>{{item.username}}</td>
-            <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-            <td>{{item.age}}</td>
+            <td>{{item.billDate|date:"MMMM"}}</td>
+            <td>{{item.forwardBalance | currency:"Rs. "}}</td>
+            <td>{{item.billAmount | currency:"Rs. "}}</td>
+            <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.billDate}}</a></td>
+            <td>{{item.billDate + 10}}</td>
         </tr>
         </tbody>
         <tfoot>
