@@ -30,6 +30,12 @@
         $scope.bills = $scope.bill_response.bill;
     });
 
+    $scope.fetchDueDate = function (date_string) {
+      var date = new Date(date_string);
+      date.setDate(date.getDate() + 10);
+      return date.toDateString();
+    }
+
 
   }
 
