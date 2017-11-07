@@ -5,14 +5,19 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.bills.previous')
-    .controller('PreviousBillsCtrl', ProfilePageCtrl);
+  angular.module('BlurAdmin.pages.bills.payment')
+    .controller('PaymentCtrl', PaymentCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, BACKEND, Restangular, $filter, $uibModal) {
+  function PaymentCtrl($scope, BACKEND, Restangular, $stateParams) {
+    console.log($stateParams);
+
     var bill_api = 'bill-module/api';
     $scope.mobile_number = '0715566158';
     $scope.page_size = 15;
+    $scope.pay_amount = $stateParams.amount;
+    $scope.bill_id = $stateParams.bill_id;
+    console.log($scope.pay_amount, $scope.bill_id);
     
 
     Restangular.setBaseUrl(BACKEND.baseResource);
@@ -26,16 +31,18 @@
       .then(function (bill_details) {
         // All bills
         $scope.bill_response = bill_details.plain();
-        $scope.bills = $scope.bill_response.bill;
+        $scope.bill = $scope.bill_response.bill[0];
     });
 
     $scope.fetchDueDate = function (date_string) {
       var date = new Date(date_string);
       date.setDate(date.getDate() + 10);
       return date.toDateString();
+    };
+
+    $scope.pay = function() {
+      console.log("PAYMENT TRIGGERED");
     }
-
-
   }
 
 })();

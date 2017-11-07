@@ -36,7 +36,7 @@
                 <span ng-if="item.paymentStatus == 'SETTLED'" class="tag label label-primary">
                     {{item.paymentStatus}}        
                 </span> 
-                <span ng-if="!item.paymentStatus == 'SETTLED'" class="tag label label-primary">
+                <span ng-if="!(item.paymentStatus == 'SETTLED')" class="tag label label-info">
                     NOT-PAID        
                 </span> 
             </td>

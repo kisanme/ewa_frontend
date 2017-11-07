@@ -1,90 +1,41 @@
 /**
- * @author v.lugovsky
- * created on 16.12.2015
+ * @author Nasik Shafeek
+ * created on 26.10.2017
  */
 (function () {
   'use strict';
 
   angular.module('BlurAdmin.pages.bills.current')
-    .controller('CurrentBillsCtrl', ProfilePageCtrl);
+    .controller('CurrentBillsCtrl', CurrentBillsCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal, User) {
-    $scope.picture = $filter('profilePicture')('Nasta');
+  function CurrentBillsCtrl($scope, BACKEND, Restangular, $stateParams) {
+    console.log($stateParams);
+    var bill_api = 'bill-module/api';
+    $scope.mobile_number = '0715566158';
+    $scope.page_size = 15;
+    
 
-      console.log(User.getCurrentUser());
-    $scope.removePicture = function () {
-      $scope.picture = $filter('appImage')('theme/no-photo.png');
-      $scope.noPicture = true;
-    };
+    Restangular.setBaseUrl(BACKEND.baseResource);
 
-    $scope.uploadPicture = function () {
-      var fileInput = document.getElementById('uploadFile');
-      fileInput.click();
+    // Get all the bills
+    Restangular
+      .one(bill_api)
+      .one('getBillDetails')
+      .one($scope.mobile_number)
+      .get()
+      .then(function (bill_details) {
+        // All bills
+        $scope.bill_response = bill_details.plain();
+        $scope.bill = $scope.bill_response.bill[0];
+        console.log($scope.bill_response, $scope.bill);
+    });
 
-    };
-
-    $scope.socialProfiles = [
-      {
-        name: 'Facebook',
-        href: 'https://www.facebook.com/akveo/',
-        icon: 'socicon-facebook'
-      },
-      {
-        name: 'Twitter',
-        href: 'https://twitter.com/akveo_inc',
-        icon: 'socicon-twitter'
-      },
-      {
-        name: 'Google',
-        icon: 'socicon-google'
-      },
-      {
-        name: 'LinkedIn',
-        href: 'https://www.linkedin.com/company/akveo',
-        icon: 'socicon-linkedin'
-      },
-      {
-        name: 'GitHub',
-        href: 'https://github.com/akveo',
-        icon: 'socicon-github'
-      },
-      {
-        name: 'StackOverflow',
-        icon: 'socicon-stackoverflow'
-      },
-      {
-        name: 'Dribbble',
-        icon: 'socicon-dribble'
-      },
-      {
-        name: 'Behance',
-        icon: 'socicon-behace'
-      }
-    ];
-
-    $scope.unconnect = function (item) {
-      item.href = undefined;
-    };
-
-    $scope.showModal = function (item) {
-      $uibModal.open({
-        animation: false,
-        controller: 'ProfileModalCtrl',
-        templateUrl: 'app/pages/profile/profileModal.html'
-      }).result.then(function (link) {
-          item.href = link;
-        });
-    };
-
-    $scope.getFile = function () {
-      fileReader.readAsDataUrl($scope.file, $scope)
-          .then(function (result) {
-            $scope.picture = result;
-          });
-    };
-
-    $scope.switches = [true, true, false, true, true, false];
+    $scope.fetchDueDate = function (date_string) {
+      var date = new Date(date_string);
+      date.setDate(date.getDate() + 10);
+      return date.toDateString();
+    }
   }
 
 })();

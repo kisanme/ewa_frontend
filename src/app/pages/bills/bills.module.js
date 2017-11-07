@@ -7,7 +7,8 @@
 
   angular.module('BlurAdmin.pages.bills', [
       'BlurAdmin.pages.bills.current',
-      'BlurAdmin.pages.bills.previous'
+      'BlurAdmin.pages.bills.previous',
+      'BlurAdmin.pages.bills.payment'
   ])
       .config(routeConfig);
 
