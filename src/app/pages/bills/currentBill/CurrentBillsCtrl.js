@@ -10,7 +10,6 @@
 
   /** @ngInject */
   function CurrentBillsCtrl($scope, BACKEND, Restangular, $stateParams) {
-    console.log($stateParams);
     var bill_api = 'bill-module/api';
     $scope.mobile_number = '0715566158';
     $scope.page_size = 15;
