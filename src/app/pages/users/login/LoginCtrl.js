@@ -9,7 +9,7 @@
     .controller('LoginCtrl', LoginCtrl);
 
   /** @ngInject */
-  function LoginCtrl($scope, $rootScope, Restangular, BACKEND, $httpParamSerializerJQLike) {
+  function LoginCtrl($scope, $rootScope, Restangular, BACKEND, $httpParamSerializerJQLike, $window) {
     var oauth_api = 'oauth-module/oauth';
     Restangular.setBaseUrl(BACKEND.baseResource);
 
@@ -41,8 +41,14 @@
         'Content-Type': "application/x-www-form-urlencoded"
       })
         .then(function (response, error) {
-          console.log(response, error);
-        });
+          console.log(response.plain());
+          var results = response.plain();
+          $window.localStorage.setItem('token', results.access_token);
+        })
+        .catch(function(response) {
+          console.log(response);
+        })
+        ;
     };
   }
 
