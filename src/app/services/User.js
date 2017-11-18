@@ -7,7 +7,10 @@
     angular.module('BlurAdmin')
         .factory('User', UserService);
 
-    function UserService($http) {
+    function UserService(Restangular, BACKEND, $window) {
+        var user_module = 'user-module/api';
+        Restangular.setBaseUrl(BACKEND.baseResource);
+
         var services = {};
 
         /**
@@ -15,7 +18,7 @@
          * @returns {object}
          */
         services.getCurrentUser = function () {
-            return {};
+            return JSON.parse($window.localStorage.getItem('user'));
         };
 
         /**
@@ -38,8 +41,15 @@
          * The function to login
          * @returns {boolean}
          */
-        services.login = function () {
-            return true;
+        services.login = function (mobile_number) {
+            return Restangular.one(user_module)
+                .one('user')
+                .one('mobile', mobile_number)
+                .get()
+                .then(function (response, error) {
+                    console.log(response.plain());
+                    $window.localStorage.setItem('user', JSON.stringify(response.plain().data));
+                });
         };
 
         return services;
