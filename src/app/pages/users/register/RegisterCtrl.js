@@ -9,7 +9,7 @@
     .controller('RegisterCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, $rootScope, fileReader, $filter, $uibModal, User) {
+  function ProfilePageCtrl($scope, $rootScope, $location, User, toastr) {
 
     // Hide sidebar and header when these pages are loaded
     $rootScope.sidebar_hide = true;
@@ -29,14 +29,25 @@
     };
 
     $scope.signUp = function () {
+      event.preventDefault();
       if ($scope.validatePassword() == true) {
         var sign_up_obj = {
           email: $scope.email,
-          number: $scope.number,
+          userName: $scope.number,
           password: $scope.password
-        }
+        };
+        User.register(sign_up_obj).then(function (results) {
+          if (results == false) {
+            toastr.error("Error in registering, please try again!", 'Error');
+          } else {
+            toastr.info("Registered successfully, redirecting to the login page now...", 'Information');
+            setTimeout(function () {
+              $location.path('/user/login');            
+            }, 2000);
+          }
+        })
       } else {
-        console.log("Password mismatching");
+        toastr.error("Password mismatching", 'Error');
       }
     };
   }

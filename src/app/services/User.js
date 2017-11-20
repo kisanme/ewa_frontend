@@ -9,6 +9,7 @@
 
     function UserService(Restangular, BACKEND, $window) {
         var user_module = 'user-module/api';
+        var oauth_module = 'oauth-module';
         Restangular.setBaseUrl(BACKEND.baseResource);
 
         var services = {};
@@ -33,8 +34,26 @@
          * Registration of a user into the system
          * @returns {boolean}
          */
-        services.register = function () {
-            return true;
+        services.register = function (register_obj) {
+            Restangular.setDefaultHeaders({});
+            return Restangular.one(oauth_module)
+                .one('api')
+                .one('user/')
+                .customPOST(register_obj, '', {}, {
+                    'Content-Type': 'application/json'
+                })
+                .then(function (response, error) {
+                    var results = response.plain();
+                    if (results.statusCode == 200 && results.data != null) {
+                        return results;
+                    } else {
+                        return false;
+                    }
+                });
+        }
+
+        services.updateCurrentUser = function (user_obj) {
+            // Current user update service endpoint
         }
 
         /**
