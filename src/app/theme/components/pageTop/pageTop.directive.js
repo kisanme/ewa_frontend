@@ -13,10 +13,16 @@
     return {
       restrict: 'E',
       templateUrl: 'app/theme/components/pageTop/pageTop.html',
-      controller: function ($scope, User) {
+      controller: (['$scope', 'User', '$window', '$location', function ($scope, User, $window, $location) {
         $scope.user = User.getCurrentUser();
         console.log($scope.user);
-      }
+
+        $scope.signOut = function () {
+          console.log("Logging out");
+          $window.localStorage.clear();
+          $window.location.reload();
+        };
+      }])
     };
   }
 

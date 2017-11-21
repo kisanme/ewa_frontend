@@ -22,7 +22,6 @@ angular.module('BlurAdmin', [
   var $window = $windowProvider.$get();
 
   if ($window.localStorage.getItem('token')) {
-    
     $httpProvider.interceptors.push('httpInterceptor');
   } else {
     $window.location.assign('/#/user/login');
@@ -31,7 +30,7 @@ angular.module('BlurAdmin', [
 .factory('httpInterceptor', function ($window) {
   var interceptor = this;
   interceptor.request = function (config) {
-    config.headers.Authorization = 'Bearer '+$window.localStorage.getItem('token');
+    config.headers.Authorization = 'bearer '+$window.localStorage.getItem('token');
     return config;
   };
   interceptor.response = function (response) {

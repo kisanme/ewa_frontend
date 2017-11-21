@@ -9,7 +9,7 @@
     .controller('LoginCtrl', LoginCtrl);
 
   /** @ngInject */
-  function LoginCtrl($scope, $rootScope, Restangular, BACKEND, $httpParamSerializerJQLike, $window, User) {
+  function LoginCtrl($scope, $rootScope, Restangular, BACKEND, $httpParamSerializerJQLike, $window, User, $location, toastr) {
     var oauth_api = 'oauth-module/oauth';
     Restangular.setBaseUrl(BACKEND.baseResource);
 
@@ -45,10 +45,11 @@
           var results = response.plain();
           $window.localStorage.setItem('mobile_number', $scope.number);
           $window.localStorage.setItem('token', results.access_token);
-          $window.href = "#/dashboard";
+          $location.path('/dashboard');
+          $window.location.reload();
         })
         .catch(function(response) {
-          console.log(response);
+          toastr.error("Error in logging in, please try again!", 'Error');
         })
         ;
     };

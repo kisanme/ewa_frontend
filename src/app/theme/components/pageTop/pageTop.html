@@ -9,9 +9,8 @@
       </a>
       <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
         <li><i class="dropdown-arr"></i></li>
-        <li><a><i class="fa fa-user"></i>{{user.firstName}} {{user.lastName}}</a></li>
         <li><a href="#/profile"><i class="fa fa-cog"></i>Settings</a></li>
-        <li><a href class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+        <li><a href class="signout" ng-click="signOut()"><i class="fa fa-power-off"></i>Sign out</a></li>
       </ul>
     </div>
   </div>
