@@ -9,11 +9,11 @@
     .controller('PaymentCtrl', PaymentCtrl);
 
   /** @ngInject */
-  function PaymentCtrl($scope, BACKEND, Restangular, $stateParams) {
+  function PaymentCtrl($scope, BACKEND, Restangular, $stateParams, User) {
     console.log($stateParams);
 
     var bill_api = 'bill-module/api';
-    $scope.mobile_number = '0715566158';
+    $scope.mobile_number = User.getCurrentUsersMobileNumber();
     $scope.page_size = 15;
     $scope.pay_amount = $stateParams.amount;
     $scope.bill_id = $stateParams.bill_id;

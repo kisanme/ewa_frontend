@@ -14,6 +14,24 @@
 
         var services = {};
 
+        services.getRemoteCurrentUser = function () {
+            var mobile_number = services.getCurrentUsersMobileNumber();
+            console.log(mobile_number);
+            // user-module/api/user/mobile/0718847868
+            return Restangular.one(user_module)
+                .one('user')
+                .one('mobile', mobile_number)
+                .get()
+                .then(function (results, error) {
+                    console.log(results);
+                    console.log(error);
+                });
+        };
+
+        services.getCurrentUsersMobileNumber = function () {
+            return JSON.parse($window.localStorage.getItem('user')).mobileNumber;
+        }
+
         /**
          * Logged in User object
          * @returns {object}
@@ -27,7 +45,7 @@
          * @returns {number}
          */
         services.getCurrentUserId = function () {
-            return 1;
+            return JSON.parse($window.localStorage.getItem('user')).id;
         };
 
         /**

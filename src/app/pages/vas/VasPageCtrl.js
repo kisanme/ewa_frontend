@@ -9,8 +9,8 @@
     .controller('VasPageCtrl', VasPageCtrl);
 
   /** @ngInject */
-  function VasPageCtrl($scope, toastr, $filter, $uibModal, BACKEND, Restangular, baProgressModal) {
-    var mobile_number = '0714244978';
+  function VasPageCtrl($scope, toastr, User, $uibModal, BACKEND, Restangular, baProgressModal) {
+    var mobile_number = User.getCurrentUsersMobileNumber();;
     var vas_api = 'vas-module/api';
 
     // TODO - Set into global configuration

@@ -9,9 +9,9 @@
     .controller('PreviousBillsCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, BACKEND, Restangular, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, BACKEND, Restangular, $filter, $uibModal, User) {
     var bill_api = 'bill-module/api';
-    $scope.mobile_number = '0715566158';
+    $scope.mobile_number = User.getCurrentUsersMobileNumber();
     $scope.page_size = 15;
     
 

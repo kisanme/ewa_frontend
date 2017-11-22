@@ -18,7 +18,6 @@
         console.log($scope.user);
 
         $scope.signOut = function () {
-          console.log("Logging out");
           $window.localStorage.clear();
           $window.location.reload();
         };

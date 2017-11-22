@@ -9,9 +9,10 @@
     .controller('CurrentBillsCtrl', CurrentBillsCtrl);
 
   /** @ngInject */
-  function CurrentBillsCtrl($scope, BACKEND, Restangular, $stateParams) {
+  function CurrentBillsCtrl($scope, BACKEND, Restangular, $stateParams, User) {
     var bill_api = 'bill-module/api';
-    $scope.mobile_number = '0715566158';
+    $scope.mobile_number = User.getCurrentUsersMobileNumber();
+
     $scope.page_size = 15;
     
 
