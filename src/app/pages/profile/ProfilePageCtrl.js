@@ -9,10 +9,13 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function ProfilePageCtrl($scope, fileReader, User, $uibModal) {
     $scope.unconnect = function (item) {
       item.href = undefined;
     };
+    console.log("HELLOWORLD");
+
+    console.log(User.getRemoteCurrentUser());
 
     $scope.showModal = function (item) {
       $uibModal.open({
