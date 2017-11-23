@@ -6,10 +6,10 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.bills.previous')
-    .controller('PreviousBillsCtrl', ProfilePageCtrl);
+    .controller('PreviousBillsCtrl', PreviousBillsCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, BACKEND, Restangular, $filter, $uibModal, User) {
+  function PreviousBillsCtrl($scope, BACKEND, Restangular, $filter, $uibModal, User) {
     var bill_api = 'bill-module/api';
     $scope.mobile_number = User.getCurrentUsersMobileNumber();
     $scope.page_size = 15;

@@ -6,10 +6,10 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.profile')
-    .controller('ProfilePageCtrl', ProfilePageCtrl);
+    .controller('BillsPageCtrl', BillsPageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
+  function BillsPageCtrl($scope, fileReader, $filter, $uibModal) {
     $scope.picture = $filter('profilePicture')('Nasta');
 
     $scope.removePicture = function () {

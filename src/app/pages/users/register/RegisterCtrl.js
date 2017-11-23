@@ -6,10 +6,10 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.user.register')
-    .controller('RegisterCtrl', ProfilePageCtrl);
+    .controller('RegisterCtrl', RegisterCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, $rootScope, $location, User, toastr) {
+  function RegisterCtrl($scope, $rootScope, $location, User, toastr) {
 
     // Hide sidebar and header when these pages are loaded
     $rootScope.sidebar_hide = true;
