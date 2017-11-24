@@ -11,10 +11,10 @@
   /** @ngInject */
   function DashboardPageCtrl($scope, User, $window) {
 
-      User.login($window.localStorage.getItem('mobile_number')).then(function (ex) {
+    var mobile_number = $window.localStorage.getItem('mobile_number');
+      User.login(mobile_number).then(function (ex) {
         $scope.user_details = User.getCurrentUser();
-        $window.location.assign('/#/bills/current');
-      }, function (error) {
+        $window.location.reload();
         $window.location.assign('/#/bills/current');
       });
   }

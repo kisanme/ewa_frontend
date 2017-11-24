@@ -9,7 +9,7 @@
     .controller('PaymentCtrl', PaymentCtrl);
 
   /** @ngInject */
-  function PaymentCtrl($scope, BACKEND, Restangular, $stateParams, User) {
+  function PaymentCtrl($scope, BACKEND, Restangular, $stateParams, User, toastr) {
     console.log($stateParams);
 
     var bill_api = 'bill-module/api';
@@ -41,7 +41,7 @@
     };
 
     $scope.pay = function() {
-      console.log("PAYMENT TRIGGERED");
+        toastr.success("Payment triggered successfully!", 'Payment triggered');
     }
   }
 
