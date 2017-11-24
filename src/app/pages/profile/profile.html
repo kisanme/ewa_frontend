@@ -9,14 +9,14 @@
           <label for="inputFirstName" class="col-sm-3 control-label">First Name</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="" ng-model="user_details.firstName" value="Jane">
           </div>
         </div>
         <div class="form-group row clearfix">
           <label for="inputLastName" class="col-sm-3 control-label">Last Name</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputLastName" placeholder="" value="">
+            <input type="text" class="form-control" id="inputLastName" placeholder="" ng-model="user_details.lastName" value="Doe">
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
           <label for="inputPassword" class="col-sm-3 control-label">Password</label>
 
           <div class="col-sm-9">
-            <input type="password" class="form-control" id="inputPassword" placeholder="" value="12345678">
+            <input type="password" class="form-control" id="inputPassword" ng-model="password" placeholder="" value="">
           </div>
         </div>
       </div>
@@ -39,13 +39,13 @@
           <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
 
           <div class="col-sm-9">
-            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="">
+            <input type="password" class="form-control" id="inputConfirmPassword" ng-model="confirm_password" placeholder="">
           </div>
         </div>
       </div>
     </div>
     
-    <button type="button" class="btn btn-primary btn-with-icon save-profile">
+    <button type="button" ng-click="updateProfile()" class="btn btn-primary btn-with-icon save-profile">
       <i class="ion-android-checkmark-circle"></i>Update Profile
     </button>
   </div>

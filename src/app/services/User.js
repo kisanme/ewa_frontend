@@ -23,14 +23,22 @@
                 .one('mobile', mobile_number)
                 .get()
                 .then(function (results, error) {
-                    console.log(results);
-                    console.log(error);
+                    return results.plain();
                 });
+        };
+
+        services.updateUserDetails = function (user_obj) {
+            return Restangular.one(user_module)
+              .one('user/')
+              .customPUT(user_obj)
+              .then(function (response) {
+                  return(response);
+              });
         };
 
         services.getCurrentUsersMobileNumber = function () {
             return JSON.parse($window.localStorage.getItem('user')).mobileNumber;
-        }
+        };
 
         /**
          * Logged in User object
