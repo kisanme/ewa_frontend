@@ -1,48 +1,16 @@
-[![Build Status](https://travis-ci.org/akveo/blur-admin.svg?branch=master)](https://travis-ci.org/akveo/blur-admin)
+This is a gulp (task runner) based project. To run follow the instructions.
 
-# BlurAdmin Angular admin panel front-end framework
+run the following commands on the front-end root directory.
+$ npm install -g gulp-cli
+$ npm install -g bower
+$ npm install gulp
+$ npm install
+$ bower install
+$ gulp serve
 
-Customizable admin panel framework made with :heart: by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this template first!
+Running gulp serve would serve the front-end at http://localhost:3000 with the backend URL loaded from the src/app/conf/conf.module.js file.
+By default its set to localhost:8080
 
-### Demo
-**[Mint version demo](http://akveo.com/blur-admin-mint/)**             |  **[Blur version demo](http://akveo.com/blur-admin/)**
-:-------------------------:|:-------------------------:
-![Mint version demo](http://i.imgur.com/A3TMviJ.png)  |  ![Blur version demo](http://i.imgur.com/EAoiK2O.jpg)
-
-## Angular 2 version
-Here you can find Angular2 based version: [ng2-admin](https://github.com/akveo/ng2-admin).
-
-### Documentation
-Installation, customization and other useful articles: https://akveo.github.io/blur-admin/
-
-*If you have problems installing and just want to download JS and css files, you can find download links here*: http://akveo.github.io/blur-admin/articles/091-downloads/
-
-## How can I support developers?
-- Star our GitHub repo
-- Create pull requests, submit bugs, suggest new features or documentation updates
-- Follow us on [Twitter](https://twitter.com/akveo_inc)
-- Like our page on [Facebook](https://www.facebook.com/akveo/)
-
-## Can I hire you guys?
-Yes! We are available for hire. Visit [our homepage](http://akveo.com/) or simply leave us a note to contact@akveo.com. We will be happy to work with you!
-
-## Features
-* Responsive layout
-* High resolution
-* Bootstrap CSS Framework
-* Sass
-* Gulp build
-* AngularJS
-* Jquery
-* Charts (amChart, Chartist, Chart.js, Morris)
-* Maps (Google, Leaflet, amMap)
-* etc
-
-License
--------------
-<a href=/LICENSE.txt target="_blank">MIT</a> license.
-
-### From akveo
-
-Enjoy!
-We're always happy to hear your feedback.
+It should also be noted that the credentials are as follows,
+username : 0718847868
+password : 123
