@@ -45,8 +45,8 @@
           var results = response.plain();
           $window.localStorage.setItem('mobile_number', $scope.number);
           $window.localStorage.setItem('token', results.access_token);
+          $window.location.reload();
           $location.path('/dashboard');
-          // $window.location.reload();
         })
         .catch(function(response) {
           toastr.error("Error in logging in, please try again!", 'Error');

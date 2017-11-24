@@ -14,7 +14,7 @@
     var mobile_number = $window.localStorage.getItem('mobile_number');
       User.login(mobile_number).then(function (ex) {
         $scope.user_details = User.getCurrentUser();
-        $window.location.reload();
+        // $window.location.reload();
         $window.location.assign('/#/bills/current');
       });
   }
